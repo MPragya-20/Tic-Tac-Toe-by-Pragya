@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
+    <style>
+        .b{
+            border: 1px solid lightslategray;
+            border-radius: 10%;
+            text-align: center!important;
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: cursive;
+            color: turquoise;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id ="main_div" align ="center" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)),url(1.jpg);background-repeat: no-repeat;background-size: cover; padding-bottom: 30px;" >
+        <h1 style="padding-top: 25px;font-family: 'Otomanopee One',cursive, sans-serif;" class="text-light">Tic-Tac-Toe <small style="color: darkturquoise;font-size: large;">Powered by Quicky <img src="logo_128.png" alt="Quicky_logo" style="width: 30px;height: 30px;"></small></h1>
+        <hr>
+        <h2 id ="desc" style="font-size: 1.4rem;color:darkorange;font-weight: bold;"></h2>
+        <h3 class="text-light" id ="winner" style="font-size: 0.8rem;font-weight: bold;">Good Luck !!</h3>
+        <br>
+        <div class="board" align="center" style="padding-top: 0px;">
+            <input class="b" type="button" value="  " id ="b1">
+            <input class="b" type="button" value="  " id ="b2">
+            <input class="b" type="button" value="  " id ="b3">
+            <input class="b" type="button" value="  " id ="b4">
+            <input class="b" type="button" value="  " id ="b5">
+            <input class="b" type="button" value="  " id ="b6">
+            <input class="b" type="button" value="  " id ="b7">
+            <input class="b" type="button" value="  " id ="b8">
+            <input class="b" type="button" value="  " id ="b9">
+        </div>
+        <button id="reset" class="btn btn-warning" type="reset" style="font-weight: bold;margin-top: 0px!important;">Play again</button>
+        <div align="right" style="margin-top: 15px;">
+            <small style="color: white;font-weight: bold;font-size: 0.5rem;">&copy; 2021 Pragya Mukherjee. All rights reserved.</small>
+        </div>
+    </div>
+    <audio id="audio" src="audio.mp3"></audio>
+    <audio id="audio2" src="audio2.mp3"></audio>
+    
+    <script>
+        var c = 0;
+        let flag = 0;//winner not declared
+        var turn = 'X';
+        var show_turn = 'X';
+        document.getElementById('desc').innerHTML = "Turn for 'X' :";
+        const check = (c) =>{
+            if (c%2 == 0){
+                turn = 'O';
+                show_turn ='X';
+            }
+            else{
+                turn = 'X';
+                show_turn ='O';
+            }
+            
+            
+            document.getElementById('desc').innerHTML = "Turn for '"+ show_turn +"' :";
+        }
+        
+        function play() {
+            var audio = document.getElementById("audio");
+            audio.play();
+        }
+        function play_draw() {
+            var audio2 = document.getElementById("audio2");
+            audio2.play();
+        }
+
+        disable_buttons=()=>{
+            document.getElementById("b1").disabled = true;
+            document.getElementById("b2").disabled = true;
+            document.getElementById("b3").disabled = true;
+            document.getElementById("b4").disabled = true;
+            document.getElementById("b5").disabled = true;
+            document.getElementById("b6").disabled = true;
+            document.getElementById("b7").disabled = true;
+            document.getElementById("b8").disabled = true;
+            document.getElementById("b9").disabled = true;
+        }
+        let check_win = () =>{
+            
+            if (  (document.getElementById("b1").value == document.getElementById("b2").value ) && (document.getElementById("b2").value == document.getElementById("b3").value ) && (document.getElementById("b1").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b1").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b1").style.color = "red";
+                document.getElementById("b2").style.color = "red";
+                document.getElementById("b3").style.color = "red";
+                flag = 1;return flag;
+
+            }
+            if (  (document.getElementById("b1").value == document.getElementById("b4").value ) && (document.getElementById("b4").value == document.getElementById("b7").value ) && (document.getElementById("b1").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b1").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b1").style.color = "red";
+                document.getElementById("b4").style.color = "red";
+                document.getElementById("b7").style.color = "red";
+                flag = 1;return flag;
+            }
+            if (  (document.getElementById("b1").value == document.getElementById("b5").value ) && (document.getElementById("b5").value == document.getElementById("b9").value ) && (document.getElementById("b1").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b1").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b1").style.color = "red";
+                document.getElementById("b5").style.color = "red";
+                document.getElementById("b9").style.color = "red";
+                flag = 1;return flag;
+            }
+            if (  (document.getElementById("b3").value == document.getElementById("b5").value ) && (document.getElementById("b5").value == document.getElementById("b7").value ) && (document.getElementById("b3").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b3").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b3").style.color = "red";
+                document.getElementById("b5").style.color = "red";
+                document.getElementById("b7").style.color = "red";
+                flag = 1;return flag;
+            }
+            if (  (document.getElementById("b3").value == document.getElementById("b6").value ) && (document.getElementById("b6").value == document.getElementById("b9").value ) && (document.getElementById("b3").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b3").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b3").style.color = "red";
+                document.getElementById("b6").style.color = "red";
+                document.getElementById("b9").style.color = "red";
+                flag = 1;return flag;
+            }
+            if (  (document.getElementById("b2").value == document.getElementById("b5").value ) && (document.getElementById("b5").value == document.getElementById("b8").value ) && (document.getElementById("b2").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b2").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b2").style.color = "red";
+                document.getElementById("b5").style.color = "red";
+                document.getElementById("b8").style.color = "red";
+                flag = 1;return flag;
+            }
+            if (  (document.getElementById("b4").value == document.getElementById("b5").value ) && (document.getElementById("b5").value == document.getElementById("b6").value ) && (document.getElementById("b4").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b4").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b4").style.color = "red";
+                document.getElementById("b5").style.color = "red";
+                document.getElementById("b6").style.color = "red";
+                flag = 1;return flag;
+            }
+            if (  (document.getElementById("b7").value == document.getElementById("b8").value ) && (document.getElementById("b8").value == document.getElementById("b9").value ) && (document.getElementById("b7").value !== "  ")  ){
+                document.getElementById("winner").innerHTML ="Player with turn "+document.getElementById("b7").value +" is the winner!";
+                disable_buttons();
+                play();
+                document.getElementById("b7").style.color = "red";
+                document.getElementById("b8").style.color = "red";
+                document.getElementById("b9").style.color = "red";
+                flag = 1;return flag;
+            }
+
+            else {
+                flag = 2;
+                return flag;
+            }
+            return flag;
+        }
+        check2=(c)=>{
+            if (c > 4){
+                let f = check_win();
+                console.log(f);
+                if (c==9 && f == 2){
+                    play_draw();
+                    disable_buttons();
+                    document.getElementById("winner").style.color ="red";
+                    document.getElementById("winner").innerHTML = "Draw!";
+                    
+                }
+            }
+
+            else{
+                return;
+            }
+        }
+        
+        $(document).ready(function(){
+            
+            $('#b1').click(function(){
+                c+=1;
+                check(c);
+                $("#b1").prop("value", turn);
+                check2(c);
+            });
+            $('#b2').click(function(){
+                c+=1;
+                check(c);
+                $("#b2").prop("value", turn);
+                check2(c);
+            });
+            $('#b3').click(function(){
+                c+=1;
+                check(c);
+                $("#b3").prop("value", turn);
+                check2(c);
+            });
+            $('#b4').click(function(){
+                c+=1;
+                check(c);
+                $("#b4").prop("value", turn);
+                check2(c);
+            });
+            $('#b5').click(function(){
+                c+=1;
+                check(c);
+                $("#b5").prop("value", turn);
+                check2(c);
+            });
+            $('#b6').click(function(){
+                c+=1;
+                check(c);
+                $("#b6").prop("value", turn);
+                check2(c);
+            });
+            $('#b7').click(function(){
+                c+=1;
+                check(c);
+                $("#b7").prop("value", turn);
+                check2(c);
+            });
+            $('#b8').click(function(){
+                c+=1;
+                check(c);
+                $("#b8").prop("value", turn);
+                check2(c);
+            });
+            $('#b9').click(function(){
+                c+=1;
+                check(c);
+                $("#b9").prop("value", turn);
+                check2(c);
+            });
+            
+        });
+
+        $(document).ready(function(){
+            $("#reset").click(function(){
+                var conf = confirm("Are you sure you want to restart ?");
+                if (conf == true){
+                    window.location.reload(); 
+                }   
+            });
+        });
+
+    </script>
+</body>
+</html>

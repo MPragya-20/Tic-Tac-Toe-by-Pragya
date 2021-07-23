@@ -1,0 +1,87 @@
+*{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.board{
+    padding:100px;
+    padding-bottom: 10px;
+    display: grid!important;
+    grid-template-columns: auto auto auto!important;
+    
+}
+.board input{
+    padding:50px;
+}
+.board input:hover{
+    background-color:lightgray;
+    transition: 0.8s;
+}
+
+@media screen and (max-width:400px){
+    #main_div{
+        font-size: 0.5rem!important;
+        padding: 50px;
+        margin-top: 10px!important;
+        margin-bottom: 10px!important;
+    }
+    #main_div h1{
+        font-size: 0.7rem;
+        margin:0px 80px;
+    }
+    #main_div h1 small{
+        font-size: 0.5rem!important;
+    }
+    .board{
+        justify-content: center!important;
+        padding:50px;
+    }
+    .board input{
+        font-size: 0.5rem;
+        padding: 0px;
+    }
+}
+@media screen and (max-width:600px){
+    #main_div{
+        font-size: 0.5rem!important;
+        padding: 10px;
+        margin:60px;
+        margin-top: 10px!important;
+        margin-bottom: 10px!important;
+    }
+    .board{
+        justify-content: center;
+    }
+    .board input{
+        padding:30px;
+    }
+}
+@media screen and (min-width:600px){
+    #main_div{
+        font-size: 0.5rem!important;
+        padding: 10px;
+        margin:60px;
+        margin-top: 10px!important;
+        margin-bottom: 10px!important;
+    }
+    .board{
+        justify-content: center;
+    }
+    .board input{
+        padding:30px;
+    }
+}
+@media screen and (min-width:992px){
+    #main_div{
+        margin:200px;
+        margin-top: 10px!important;
+        margin-bottom: 10px!important;
+    }
+    .board{
+        justify-content: center!important;
+    }
+    .board input{
+        padding:40px!important;
+        font-size: 1.8rem;
+    }
+}
+
